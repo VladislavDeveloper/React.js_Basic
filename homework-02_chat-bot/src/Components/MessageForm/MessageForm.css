@@ -1,0 +1,28 @@
+.message-form{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: -webkit-fill-available;
+    height: 80px;
+    background: #A1E2D9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+.send-message-btn{
+    background: #79C7C5;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px 10px 20px;
+}
+.message-input{
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    border: none;
+}
+.send-message-btn:hover{
+    background: #A1E2D9;
+    border: 1px solid #79C7C5;
+}

@@ -1,0 +1,13 @@
+.message-form{
+    background: #6b9efd;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: -webkit-fill-available;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 18px;
+    padding-right: 18px;
+}

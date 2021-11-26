@@ -50,12 +50,18 @@ function App(){
                 if(lastMessage?.text.toLowerCase() === "привет" || lastMessage?.text.toLowerCase() === "здравствуйте")sendAnswer("Здравствуйте ! Я Ваш личный бот-помощник ) Чем могу помочь?  Поддержка ? Задать мне вопрос ? Завершить чат ?");
                 if(lastMessage?.text.toLowerCase() === "поддержка")sendAnswer("Для обращения в службу поддержки нажмите 1")
                 if(lastMessage?.text.toLowerCase() === "1")sendAnswer("Перенаправляю вас в службу поддержки...")
-                if(lastMessage?.text.toLowerCase() === "вопрос" || lastMessage?.text.toLowerCase() === "задать вопрос" )sendAnswer("Напишите Ваш вопрос")
+                if(lastMessage?.text.toLowerCase() === "вопрос" || lastMessage?.text.toLowerCase() === "задать вопрос" )sendAnswer("Напишите Ваш вопрос, например: сколько времени ? или чем заняться на выходных ?")
                 if(lastMessage?.text.toLowerCase() === "завершить чат")sendAnswer("До свидания и хорошего дня !")
-                if(lastMessage?.text.toLowerCase() === "")sendAnswer("До свидания и хорошего дня !");
-            }, 1200)
+                if(lastMessage?.text.toLowerCase() === "сколько времени ?"){
+                    let hourNow = new Date().getHours();
+                    let minutesNow = new Date().getMinutes();
+                    sendAnswer(`Сейчас ${hourNow} часов ${minutesNow} минут`);
+                }
+                if(lastMessage?.text.toLowerCase() === "чем заняться на выходных ?")sendAnswer("Я бы могла посоветовать множество хороших мест в Питере, но из-за эпидемиологической обстановки моя рекомендация - оставаться дома по возможности ;)")
+                if(lastMessage?.text.toLowerCase() === "спасибо")sendAnswer("Всегда пожалуйста !")
+            }, 1500)
         }
-    },[messages]);
+    },[messages])
 
 
     return(

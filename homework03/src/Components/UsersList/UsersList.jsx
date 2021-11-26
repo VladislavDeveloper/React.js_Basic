@@ -10,20 +10,22 @@ import "./UsersList.css"
 
 const UsersList = ({users}) => {
     return(
-        <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      {users.map((user) => {
-        return (
-          <ListItem key={user.id} alignItems="flex-start">
-            <ListItemButton>
-              <ListItemAvatar>
-                <Avatar src={user.img}/>
-              </ListItemAvatar>
-              <ListItemText  primary={user.name} />
-            </ListItemButton>
-          </ListItem>
-        );
-      })}
-    </List>
+    <div className="users-list">
+      <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        {users.map((user) => {
+          return (
+            <ListItem key={user.id} alignItems="flex-start">
+              <ListItemButton>
+                <ListItemAvatar>
+                  <Avatar src={user.img}/>
+                </ListItemAvatar>
+                <ListItemText  primary={user.name} />
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
+      </List>
+    </div>
     )
 }
 

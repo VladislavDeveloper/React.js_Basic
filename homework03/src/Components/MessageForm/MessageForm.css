@@ -11,3 +11,6 @@
     padding-left: 18px;
     padding-right: 18px;
 }
+.MuiTextField-root{
+    background-color: white;
+}

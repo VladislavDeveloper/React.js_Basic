@@ -1,3 +1,5 @@
-h2{
-    color: blue;
+@media (max-width: 500px){
+    .users-list{
+        display: none;
+    }
 }

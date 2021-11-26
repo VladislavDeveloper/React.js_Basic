@@ -2,9 +2,16 @@ import React from "react";
 
 import "./MessageList.css"
 
-const MessageList = () => {
+const MessageList = ({messages}) => {
     return(
-        <h2>Message list</h2>
+        <div className="message-list">
+            {messages.map((message) => {
+                return <div className={message.author === "me" ? "message" : "answer"} key={message.id}>
+                    {message.text}
+                    <div className="author">{message.author}</div>
+                </div>
+            })}
+        </div>
     )
 }
 

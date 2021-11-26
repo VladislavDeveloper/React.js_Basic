@@ -7,3 +7,9 @@ body{
     grid-template-columns: 1fr 2fr;
     padding-right: 18px;
 }
+@media (max-width: 500px){
+    .container{
+        display: block;
+        padding: 0;
+    }
+}

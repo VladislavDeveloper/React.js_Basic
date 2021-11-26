@@ -40,9 +40,8 @@ function App(){
             <Header />
             <div className="container">
                 <UsersList users={users} />
-                <MessageList />  
+                <MessageList messages={messages} />  
             </div>
-            
             <MessageForm sendMessage={sendMessage} />
         </div>
         

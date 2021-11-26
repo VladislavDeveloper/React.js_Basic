@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-
-import "./App.css"
-
+import React, { useState, useEffect } from "react";
 
 import Header from "./Components/Header/Header";
 import MessageForm from "./Components/MessageForm/MessageForm";
 import UsersList from "./Components/UsersList/UsersList";
 import MessageList from "./Components/MessageList/MessageList";
+
+import "./App.css"
 
 
 import avatar from "./Images/chat-bot-icon.png"
@@ -28,11 +27,35 @@ function App(){
         setMessages(messages.concat([{
             text,
             id: Date.now(),
-            author: "me"
+            author: "You"
         }]))
 
         console.log(messages);
     };
+
+
+    function sendAnswer(text){
+        setMessages(messages.concat([{
+            text,
+            id: Date.now(),
+            author: 'Bot'
+        }]))
+    }
+
+    useEffect(() => {
+        const lastMessage = messages[messages.length - 1];
+
+        if(lastMessage?.author === "You"){
+            setTimeout(()=>{
+                if(lastMessage?.text.toLowerCase() === "привет" || lastMessage?.text.toLowerCase() === "здравствуйте")sendAnswer("Здравствуйте ! Я Ваш личный бот-помощник ) Чем могу помочь?  Поддержка ? Задать мне вопрос ? Завершить чат ?");
+                if(lastMessage?.text.toLowerCase() === "поддержка")sendAnswer("Для обращения в службу поддержки нажмите 1")
+                if(lastMessage?.text.toLowerCase() === "1")sendAnswer("Перенаправляю вас в службу поддержки...")
+                if(lastMessage?.text.toLowerCase() === "вопрос" || lastMessage?.text.toLowerCase() === "задать вопрос" )sendAnswer("Напишите Ваш вопрос")
+                if(lastMessage?.text.toLowerCase() === "завершить чат")sendAnswer("До свидания и хорошего дня !")
+                if(lastMessage?.text.toLowerCase() === "")sendAnswer("До свидания и хорошего дня !");
+            }, 1200)
+        }
+    },[messages]);
 
 
     return(

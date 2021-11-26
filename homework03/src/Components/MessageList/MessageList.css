@@ -29,12 +29,15 @@
 	max-width: 700px;
 	padding: 14px 18px;
     margin: 6px 8px;
-	background-color: #6C8EA4;
+	background: #035afc;
 	border-radius: 16px 16px 16px 0;
 	border: 1px solid #54788e;
 }
 @media (min-width: 720px){
     .message{
+        min-width: 380px;
+    }
+    .answer{
         min-width: 380px;
     }
 }
@@ -43,6 +46,9 @@
         height: 565px;
     }
     .message{
-        min-width: 680px;
+        min-width: 600px;
+    }
+    .answer{
+        min-width: 600px;
     }
 }

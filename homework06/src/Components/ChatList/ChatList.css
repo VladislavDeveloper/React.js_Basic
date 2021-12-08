@@ -1,0 +1,57 @@
+.contact-profile{
+    display: flex;
+    align-items: center;
+    border: 1px solid green;
+    padding: 5px 10px 3px 8px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.user-name-link{
+    margin-left: 25px;
+}
+.user-link{
+    text-decoration: none;
+    color: rgb(39, 37, 37);
+}
+.contacts-list{
+    width: 300px;
+}
+.contacts-search{
+    display: flex;
+    justify-content: center;
+    padding: 8px 20px 8px 20px;
+    margin-top: 18px;
+    background-color: rgb(68 66 66 / 9%);
+    border-radius: 20px;
+}
+.contacts-form{
+    display: flex;
+    align-items: center;
+}
+.search-btn{
+    padding: 3px 12px 3px 8px;
+    border: none;
+    background-color: #4caf50;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+.contacts-search-input{
+    margin-left: 8px;
+}
+.add-new-contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.add-contact-btn{
+    background: #32cd72;
+    border: none;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    padding: 20px 30px 20px 30px;
+    margin-top: 35px;
+    cursor: pointer;
+}

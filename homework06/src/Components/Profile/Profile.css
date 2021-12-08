@@ -1,0 +1,31 @@
+.profile-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(68 66 66 / 9%);
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 25px 30px 180px 30px;
+}
+.decor-line{
+    height: 3px;
+    width: 120px;
+    background:#32cd72;
+    margin: 0 auto;
+    margin-bottom: 25px;
+}
+.acount-rename{
+    display: flex;
+    flex-direction: column;
+}
+.rename-btn{
+    background: #32cd72;
+    border: none;
+    border-radius: 15px;
+    height: 30px;
+    flex-wrap: wrap;
+    padding-right: 20px 30px 20px 30px;
+    margin-top: 35px;
+    cursor: pointer;
+}

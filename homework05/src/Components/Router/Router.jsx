@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Home from "../Home/Home";
 import Contacts from "../Contacts/Contacts";
@@ -10,7 +10,7 @@ import { ROUTES } from './constants'
 
 export function Router(){
     return(
-        <>
+        <Switch>
             <Route exact path={ROUTES.HOME}>
                 <Home />
             </Route>
@@ -23,6 +23,6 @@ export function Router(){
             <Route path={`${ROUTES.CHAT}/:Id?`}>
                 <MessageList />
             </Route>
-        </>
+        </Switch>
     )
 }

@@ -1,4 +1,4 @@
-import { ADD_MESSAGE } from "./constants";
+import { ADD_MESSAGE, REMOVE_MESSAGES } from "./constants";
 
 const initialState = {
     messageList: {},
@@ -8,6 +8,7 @@ const messagesReducer = (state = initialState, action) => {
         case ADD_MESSAGE: {
             const chatId = action.chatId
             const message = action.message
+            const author = action.author
             
             const chatMessages = state.messageList[chatId] ?? [];
 
@@ -15,10 +16,22 @@ const messagesReducer = (state = initialState, action) => {
                 ...state,
                 messageList:{
                     ...state.messageList,
-                    [chatId]:[...chatMessages, {id:'unique', text: message }] 
+                    [chatId]:[...chatMessages, {id: Date.now(), author: author, text: message }] 
                 }
             }
         };
+        case REMOVE_MESSAGES: {
+            console.log(action.id);
+            
+            return {
+                ...state,
+                messageList:{
+                   ...state.messageList,
+                   
+                }
+            }
+
+        }
         default:{
             return state
         }

@@ -11,7 +11,8 @@ import "./ChatList.css"
 
 import { chatListSelector } from "../../Store/chats/selectors";
 import { addChat } from "../../Store/chats/actions";
-
+import { removeChatAction } from "../../Store/chats/actions";
+import { removeMessages } from "../../Store/messages/actions";
 const style = {
     position: 'absolute',
     top: '50%',
@@ -81,9 +82,16 @@ export function ChatList(){
                             <div className="user-name-link">
                                 <Link className="user-link" to={`chat/${chat.id}`}><h3>{chat.name}</h3></Link>
                             </div>
-                            {/* <div className="delete-contacts">
-                                <button onClick={() => removeContact(contact.id)}>Del</button>
-                            </div> */}
+                            <div className="delete-contacts">
+                                <button 
+                                onClick={removeChat => 
+                                    {dispatch(removeChatAction(chat.id),
+                                     dispatch(removeMessages(chat.id)))
+                                    }}
+                                >
+                                 Del
+                                </button>
+                            </div>
                         </div>
             })}
         </div>

@@ -21,14 +21,15 @@ const messagesReducer = (state = initialState, action) => {
             }
         };
         case REMOVE_MESSAGES: {
-            console.log(action.id);
-            
+            const id  = action.id;
+            console.log(id);
+
+
+
+            let { [id]:[...chatMessages], ...messageList} = state.messageList
+
             return {
-                ...state,
-                messageList:{
-                   ...state.messageList,
-                   
-                }
+                messageList
             }
 
         }

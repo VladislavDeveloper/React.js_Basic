@@ -29,8 +29,6 @@ function MessageList(){
         dispatch(addMessage(chatId, message, author));
     } 
 
-    console.log(messages[chatId]);
-
 
     if(messages[chatId]){
         return( 

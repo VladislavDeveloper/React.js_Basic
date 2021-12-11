@@ -12,7 +12,7 @@ const chatsReducer = (state = initialChats, action) => {
                 chatsList:[
                     ...state.chatsList,
                     {
-                        id: state.chatsList.length + 1,
+                        id: Date.now(),
                         name: action.name,
                     },
                 ],

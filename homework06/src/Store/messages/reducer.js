@@ -24,9 +24,7 @@ const messagesReducer = (state = initialState, action) => {
             const id  = action.id;
             console.log(id);
 
-
-
-            let { [id]:[...chatMessages], ...messageList} = state.messageList
+            let { [id]:chatMessages, ...messageList} = state.messageList
 
             return {
                 messageList

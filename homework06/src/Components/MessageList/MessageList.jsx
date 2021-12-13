@@ -1,8 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { useParams} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
-import { chatListSelector } from "../../Store/chats/selectors";
 import { messageListSelector } from "../../Store/messages/selectors"
 import { userNameSelector } from "../../Store/profile/selectors";
 import { addMessage } from "../../Store/messages/actions";
@@ -15,9 +14,11 @@ function MessageList(){
 
     const dispatch = useDispatch()
 
-    const chats = useSelector(chatListSelector);
     const messages = useSelector(messageListSelector);
+
     const author = useSelector(userNameSelector)
+
+    console.log(author);
 
     const [message, setMessage] = useState('')
 
@@ -32,49 +33,59 @@ function MessageList(){
 
     if(messages[chatId]){
         return( 
-        <>
-        <div className="chat">
-                {messages[chatId].map((mess) => {
-                    return <div className="message" key={mess.id}><h3>{mess.author}</h3><p>{mess.text}</p></div>
-                })}
-        </div>
-
-
-        <div className="send-message">
-        <div className="message-form">
-            <div className="form-container">
-                <div className="input-form">
-                <input className="message-input" 
-                type="text" 
-                placeholder="Type your message..."
-                value={message} 
-                onChange={handleMessage}/> 
+            <>
+                <div className="chat">
+                        {messages[chatId].map((mess) => {
+                            return (
+                                <div className={mess.author === author ? "message" : "answer"} key={mess.id}>
+                                <p>{mess.text}</p>
+                                <div className="author">{mess.author}</div>
+                                </div>
+                            )
+                        })}
                 </div>
-            <button className="send-message-btn" onClick={onAddMessage}>Send</button>
-            </div> 
-        </div>
-        </div>
-        </>
+
+
+                <div className="send-message">
+                    <div className="message-form">
+                        <div className="form-container">
+                            <div className="input-form">
+                            <input className="message-input" 
+                            type="text" 
+                            placeholder="Type your message..."
+                            value={message} 
+                            onChange={handleMessage}/> 
+                            </div>
+                        <button className="send-message-btn" onClick={onAddMessage}>Send</button>
+                        </div> 
+                    </div>
+                </div>
+            </>
         )
     }
     else{
         return(
-        <>
-        <div className="send-message">
-        <div className="message-form">
-            <div className="form-container">
-                <div className="input-form">
-                <input className="message-input" 
-                type="text" 
-                placeholder="Type your message..."
-                value={message} 
-                onChange={handleMessage}/> 
+            <>
+                <div className="no-chat-message">
+                        Чата с этим пользователем ещё нет.
+                        Напишите сообщение, чтобы создать чат
                 </div>
-            <button className="send-message-btn" onClick={onAddMessage}>Send</button>
-            </div> 
-        </div>
-        </div>
-        </>
+
+                <div className="send-message">
+                    <div className="message-form">
+                        <div className="form-container">
+                            <div className="input-form">
+                            <input className="message-input" 
+                            type="text" 
+                            placeholder="Type your message..."
+                            value={message} 
+                            onChange={handleMessage}/> 
+                            </div>
+                            <button className="send-message-btn" onClick={onAddMessage}>Send</button>
+                        </div> 
+                    </div>
+                </div>
+            </>
         )
     }
 }

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import { green } from '@mui/material/colors';
 import Icon from '@mui/material/Icon';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +14,7 @@ import { chatListSelector } from "../../Store/chats/selectors";
 import { addChat } from "../../Store/chats/actions";
 import { removeChatAction } from "../../Store/chats/actions";
 import { removeMessages } from "../../Store/messages/actions";
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -76,21 +78,21 @@ export function ChatList(){
             <h3>Ваши контакты:</h3>
             {chats.map((chat) => {
                 return  <div className="contact-profile" key={chat.id}>
-                            <div>
-                                <Avatar />
+                            <div className="main-contact-info">
+                                <div>
+                                    <Avatar />
+                                </div>
+                                <div className="user-name-link">
+                                    <Link className="user-link" to={`chat/${chat.id}`}><h3>{chat.name}</h3></Link>
+                                </div>   
                             </div>
-                            <div className="user-name-link">
-                                <Link className="user-link" to={`chat/${chat.id}`}><h3>{chat.name}</h3></Link>
-                            </div>
+                            
                             <div className="delete-contacts">
-                                <button 
-                                onClick={removeChat => 
+                                <DeleteIcon 
+                                onClick={() => 
                                     {dispatch(removeChatAction(chat.id),
-                                     dispatch(removeMessages(chat.id)))
-                                    }}
-                                >
-                                 Del
-                                </button>
+                                     dispatch(removeMessages(chat.id)))}}
+                                />
                             </div>
                         </div>
             })}

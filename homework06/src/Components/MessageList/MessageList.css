@@ -34,3 +34,35 @@
     background: #A1E2D9;
     border: 1px solid #79C7C5;
 }
+.message{
+    position: relative;
+    min-width: 270px;
+	max-width: 700px;
+	padding: 5px 18px;
+    margin: 24px 8px;
+    background: rgb(68 66 66 / 9%);
+	border-radius: 16px 16px 0 16px;
+}
+.author{
+    background: #32cd72;
+    color: white;
+    padding: 3px 10px 3px 10px;
+    position: absolute;
+    right: 18px;
+    top: 50px;
+}
+.answer{
+    position: relative;
+    min-width: 270px;
+	max-width: 700px;
+	padding: 5px 18px;
+    margin: 24px 8px;
+    background: rgb(210 210 210);
+	border-radius: 16px 16px 16px 0;
+}
+.no-chat-message{
+    background-color: rgb(68 66 66 / 9%);
+    border-radius: 20px;
+    padding: 25px 30px 45px 30px;
+    margin-top: 20px;
+}

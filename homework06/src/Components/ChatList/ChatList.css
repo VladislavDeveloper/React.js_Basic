@@ -1,10 +1,16 @@
 .contact-profile{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border: 1px solid green;
     padding: 5px 10px 3px 8px;
     border-radius: 20px;
     margin-bottom: 20px;
+    color: darkgray;
+}
+.main-contact-info{
+    display: flex;
+    align-items: center;
 }
 .user-name-link{
     margin-left: 25px;

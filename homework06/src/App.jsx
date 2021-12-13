@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { Provider } from "react-redux";
 
 import Header from "./Components/Header/Header";

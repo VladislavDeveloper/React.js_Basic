@@ -37,7 +37,7 @@
 .message{
     position: relative;
     min-width: 270px;
-	max-width: 700px;
+	max-width: 300px;
 	padding: 5px 18px;
     margin: 24px 8px;
     background: rgb(68 66 66 / 9%);
@@ -49,12 +49,12 @@
     padding: 3px 10px 3px 10px;
     position: absolute;
     right: 18px;
-    top: 50px;
+    top: 85%;
 }
 .answer{
     position: relative;
     min-width: 270px;
-	max-width: 700px;
+	max-width: 300px;
 	padding: 5px 18px;
     margin: 24px 8px;
     background: rgb(210 210 210);

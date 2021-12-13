@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useParams} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
 import { messageListSelector } from "../../Store/messages/selectors"
 import { userNameSelector } from "../../Store/profile/selectors";
 import { addMessage } from "../../Store/messages/actions";
+import { addMessageWithThunk } from "../../Store/messages/actions";
 
 import "./MessageList.css"
 
@@ -18,17 +19,15 @@ function MessageList(){
 
     const author = useSelector(userNameSelector)
 
-    console.log(author);
-
     const [message, setMessage] = useState('')
 
     const handleMessage = (event) => {
         setMessage(event.target.value)
     }
 
-    const onAddMessage = () => {
-        dispatch(addMessage(chatId, message, author));
-    } 
+    const onAddMessage = useCallback(()=> {
+        dispatch(addMessageWithThunk(chatId, message, author));
+    }, [chatId, message, author, dispatch]);
 
 
     if(messages[chatId]){

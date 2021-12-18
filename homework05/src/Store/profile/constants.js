@@ -1,0 +1,3 @@
+export const SHOW_USER_INFO = "SHOW_USER_INFO"
+
+export const CHANGE_USER_STATUS = "CHANGE_USER_STATUS"

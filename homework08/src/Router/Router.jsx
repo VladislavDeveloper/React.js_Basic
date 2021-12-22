@@ -5,6 +5,7 @@ import { ROUTES } from "./constants";
 import { ChatList } from "../Components/ChatList";
 import Profile from "../Components/Profile/Profile";
 import MessageList from "../Components/MessageList/MessageList"
+import News from "../Components/News/News";
 
 export default function Router(){
     return(
@@ -14,6 +15,9 @@ export default function Router(){
         </Route>
         <Route path={ROUTES.PROFILE}>
             <Profile />
+        </Route>
+        <Route path={ROUTES.NEWS}>
+            <News />
         </Route>
         <Route path={ROUTES.MESSAGE_LIST}>
             <MessageList />

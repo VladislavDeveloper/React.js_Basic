@@ -12,7 +12,7 @@ function Profile(){
 
     const dispatch = useDispatch()
 
-    const { userName } = useSelector(profileSelector)
+    const { userName, auth } = useSelector(profileSelector)
     const [ value, setValue ] = useState('')
 
     const handleChange = event => {
@@ -24,12 +24,15 @@ function Profile(){
         }, [dispatch, value]    
     )
 
+    console.log(auth);
+
     return(
         <div className="profile-page">
             <div className="profile-info">
                 <h2>Ваш профиль</h2>
                 <Avatar sizes="large" src="/broken-image.jpg" />
                 <h3>{ userName }</h3>
+                <p>{ auth.email }</p>
                 <div className="decor-line"></div>
                 <div className="acount-rename">
                     <input value={value} onChange={handleChange} type="text" />

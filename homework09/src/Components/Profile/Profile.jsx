@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Avatar from '@mui/material/Avatar';
+import firebase from "firebase";
 
 import { changeUserName } from "../../Store/profile/actions"
 import { profileSelector } from "../../Store/profile/selectors";
@@ -9,6 +10,7 @@ import "./Profile.css"
 
 
 function Profile(){
+    const db = firebase.database();
 
     const dispatch = useDispatch()
 
@@ -20,9 +22,10 @@ function Profile(){
     }
     
     const setUserName = useCallback(() => {
-        dispatch(changeUserName(value))
-        }, [dispatch, value]    
-    )
+        const id = firebase.auth().currentUser.uid;
+        
+        db.ref("profile").child(id).child("userName").set(value);
+    })
 
     console.log(auth);
 
@@ -44,5 +47,3 @@ function Profile(){
 }
 
 export default Profile
-
-

@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import { green } from '@mui/material/colors';
@@ -7,6 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from "react-redux";
+import firebase from "firebase";
 
 import "./ChatList.css"
 
@@ -28,14 +29,17 @@ const style = {
 
 
 export function ChatList(){
-
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const [newChatName, setNewChatName] = useState('');
 
-    const chats = useSelector(chatListSelector);
+    // const chats = useSelector(chatListSelector);
+
+    const [chats, setChats] = useState([]);
+
+    const chatId = Date.now();
 
     const dispatch = useDispatch();
 
@@ -43,10 +47,24 @@ export function ChatList(){
         setNewChatName(event.target.value);
     }
 
+    useEffect(()=> {
+        firebase.database().ref("chats").child("chat").on("value", (snapshot) => {
+            const newChats = [];
+            snapshot.forEach(entry => {
+            newChats.push(entry.val());
+            });
+            console.log(newChats);
+            setChats(newChats);
+        })
+    },[]);
+
     const onAddChat = () => {
-        dispatch(addChat(newChatName));
-        setNewChatName('');
-        handleClose();
+        // dispatch(addChat(newChatName));
+        // setNewChatName('');
+        // handleClose();
+         firebase.database().ref("chats").child(chatId).push({name: newChatName});
+         setNewChatName('');
+         handleClose();
     }
 
     return(

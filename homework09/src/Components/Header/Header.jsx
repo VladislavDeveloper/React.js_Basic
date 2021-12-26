@@ -1,15 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Avatar from '@mui/material/Avatar';
 import MessageSharpIcon from '@mui/icons-material/MessageSharp';
 import PublicIcon from '@mui/icons-material/Public';
 
+import { initUserNameWithThunk } from "../../Store/profile/actions";
+
 import "./Header.css"
+
 
 function Header(){
 
+    const dispatch = useDispatch();
+
     const { userName, auth } = useSelector((state) => state.profile);
+
+    useEffect(() => {
+        dispatch(initUserNameWithThunk())
+    },[])
     return(
         
             <div className="header">

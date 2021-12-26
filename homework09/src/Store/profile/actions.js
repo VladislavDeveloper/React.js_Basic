@@ -21,4 +21,15 @@ export const checkAuthStatusWithThunk = () => async (dispatch, getState) => {
     await firebase.auth().onAuthStateChanged((auth) => {
       dispatch(authRequestSuccessful(auth));
     })  
-} 
+}
+
+export const initUserNameWithThunk = () => async (dispatch) => {
+  await firebase.auth().onAuthStateChanged((auth) => {
+    if(auth){
+      const id = firebase.auth().currentUser.uid;
+      firebase.database().ref("profile").child(id).child("userName").on("value", (snapshot) => {
+        dispatch(changeUserName(snapshot.val()))
+      })
+    }
+  })
+}

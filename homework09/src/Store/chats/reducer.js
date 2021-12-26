@@ -9,13 +9,7 @@ const chatsReducer = (state = initialChats, action) => {
         case ADD_CHAT:
             return{
                 ...state,
-                chatsList:[
-                    ...state.chatsList,
-                    {
-                        id: Date.now(),
-                        name: action.name,
-                    },
-                ],
+                chatsList: action.chats
             }
         case REMOVE_CHAT: 
             return{

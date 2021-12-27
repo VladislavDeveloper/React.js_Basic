@@ -5,6 +5,7 @@ import firebase from "firebase";
 
 import { profileSelector } from "../../Store/profile/selectors";
 import { initUserNameWithThunk } from "../../Store/profile/actions";
+import { changeUserName } from "../../Store/profile/actions";
 
 import "./Profile.css"
 
@@ -19,11 +20,11 @@ function Profile(){
     const handleChange = event => {
         setValue(event.target.value)
     }
+
+    const changeName = () => {
+        dispatch(changeUserName(value))
+    }
     
-    const changeUserName = useCallback(() => {
-        const id = firebase.auth().currentUser.uid;
-        db.ref("profile").child(id).child("userName").set(value);
-    })
 
     useEffect(() => {
         dispatch(initUserNameWithThunk())
@@ -39,7 +40,7 @@ function Profile(){
                 <div className="decor-line"></div>
                 <div className="acount-rename">
                     <input value={value} onChange={handleChange} type="text" />
-                    <button className="rename-btn" onClick={changeUserName}>Rename</button>
+                    <button className="rename-btn" onClick={changeName}>Rename</button>
                 </div>
             </div>
         </div>

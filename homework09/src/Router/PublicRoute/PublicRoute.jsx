@@ -7,6 +7,5 @@ import { ROUTES } from "../constants";
 
 export const PublicRoute = ({...rest}) => {
     const auth = useSelector(profileAuthSelector);
-    console.log(auth);
     return !auth ? <Route {...rest} /> : <Redirect to={ROUTES.HOME}/> 
 }

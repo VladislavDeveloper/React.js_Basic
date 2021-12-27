@@ -1,22 +1,37 @@
-import { ADD_MESSAGE, REMOVE_MESSAGES } from "./constants";
+import firebase from "firebase";
+import { CHANGE_MESSAGES } from "./constants";
 
-export const addMessage = (chatId, message, author) => ({
-    type: ADD_MESSAGE,
-    chatId,
-    message,
-    author,
-});
+const db = firebase.database();
 
-export const removeMessages = (id) => ({
-    type: REMOVE_MESSAGES,
-    id,
-})
+const getPayloadFromSnapshot = (snapshot) => {
+    const messages = [];
 
-export const addMessageWithThunk = (chatId, message, author) => (dispatch, getState) => {
-    dispatch(addMessage(chatId, message, author));
-    if(message.author !== "Bot" && chatId === "11111111"){
-        const botMessage =  "Привет ! Добро пожаловать в приложение Messenger ! Я бот-администратор, если у тебя есть вопросы или пожелания, связанные с работой приложения - напиши мне ;)"
-        const author =  "Bot"
-        setTimeout(() => dispatch(addMessage(chatId, botMessage, author )), 2000)
-    }
+    snapshot.forEach((message) => {
+        messages.push(message.val());
+    });
+
+    return { chatId: snapshot.key, messages } 
+}
+
+export const addMessageWithFirebase = (chatId, message, messageId, author) => async () => {
+    db.ref("messages").child(chatId).push({message_text: message, id: messageId, message_author: author });
+}
+
+export const initMessageWithFirebase = () => (dispatch) => {
+    db.ref("messages").on("child_changed", (snapshot) => {
+        const payload = getPayloadFromSnapshot(snapshot);
+        dispatch({
+            type: CHANGE_MESSAGES,
+            payload,
+        });
+    });
+
+    db.ref("messages").on("child_added", (snapshot) => {
+        const payload = getPayloadFromSnapshot(snapshot);
+        dispatch({
+            type: CHANGE_MESSAGES,
+            payload,
+        });
+    });
+
 }

@@ -25,6 +25,5 @@ export const initChatsWithThunk = () => async (dispatch) => {
         })
         updateChats.reverse();
         dispatch(addChat(updateChats));
-        console.log(updateChats);
     })
 }

@@ -2,7 +2,7 @@ import firebase from "firebase";
 
 import { AUTH_REQUEST, AUTH_REQUEST_SUCCESSFUL, CHANGE_USER_NAME } from "./constants";
 
-export const changeUserName = (payload) => ({
+export const changeUserNameAction = (payload) => ({
   type: CHANGE_USER_NAME,
   payload,
 })
@@ -23,12 +23,18 @@ export const checkAuthStatusWithThunk = () => async (dispatch, getState) => {
     })  
 }
 
+export const changeUserName = (value) => async() => {
+  const db = firebase.database();
+  const id = firebase.auth().currentUser.uid;
+  db.ref("profile").child(id).child("userName").set(value);
+}
+
 export const initUserNameWithThunk = () => async (dispatch) => {
   await firebase.auth().onAuthStateChanged((auth) => {
     if(auth){
       const id = firebase.auth().currentUser.uid;
       firebase.database().ref("profile").child(id).child("userName").on("value", (snapshot) => {
-        dispatch(changeUserName(snapshot.val()))
+        dispatch(changeUserNameAction(snapshot.val()))
       })
     }
   })

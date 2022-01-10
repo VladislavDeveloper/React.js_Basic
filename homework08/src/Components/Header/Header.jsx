@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Avatar from '@mui/material/Avatar';
 import MessageSharpIcon from '@mui/icons-material/MessageSharp';
+import PublicIcon from '@mui/icons-material/Public';
 
 import "./Header.css"
 
@@ -17,6 +18,9 @@ function Header(){
                     <div className="left-header">
                         <Link className="nav-link" to="/">
                             <MessageSharpIcon fontSize="large" />
+                        </Link>
+                        <Link className="nav-link" to="/news">
+                            <PublicIcon fontSize="large" />
                         </Link>
                     </div>
                     <div className="right-header">

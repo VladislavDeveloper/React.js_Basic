@@ -1,0 +1,10 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.app-container{
+    display: flex;
+    justify-content: center;
+    max-width: 825px;
+    margin: 0 auto;
+}

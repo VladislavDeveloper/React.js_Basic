@@ -1,0 +1,31 @@
+.header{
+    background:#32cd72;
+    color: rgb(39, 39, 39)
+}
+.header-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 825px;
+}
+.left-header{
+    display: flex;
+    padding-left: 8px;
+}
+.right-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 8px;
+}
+.user-name{
+    padding-right: 20px;
+}
+.nav-link{
+    text-decoration: none;
+    color: white;
+}
+.MuiAvatar-root{
+    cursor: pointer;
+}

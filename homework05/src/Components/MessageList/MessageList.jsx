@@ -6,6 +6,8 @@ import "./MessageList.css"
 function MessageList({contacts}){
     const { Id } = useParams();
 
+    console.log(Id);
+
     if(Id){
         return(
             <>

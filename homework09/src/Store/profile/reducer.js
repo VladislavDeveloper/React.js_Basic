@@ -1,7 +1,9 @@
-import { CHANGE_USER_NAME } from "./constants";
+import { AUTH_REQUEST, AUTH_REQUEST_SUCCESSFUL, CHANGE_USER_NAME } from "./constants";
 
 const initialState = {
-    userName: "Пользователь"
+    userName: "Пользователь",
+    auth: undefined,
+    loading: true,
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -10,6 +12,20 @@ const profileReducer = (state = initialState, action) => {
             return{
                 ...state,
                 userName:action.payload
+            }
+        }
+        case AUTH_REQUEST:{
+            return{
+                ...state,
+                loading: true,
+                error: false
+            }
+        }
+        case AUTH_REQUEST_SUCCESSFUL:{
+            return{
+                ...state,
+                loading: false,
+                auth: action.payload,
             }
         }
         default:

@@ -1,12 +1,13 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useParams} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
 import { messageListSelector } from "../../Store/messages/selectors"
-import { userNameSelector } from "../../Store/profile/selectors";
-import { addMessageWithThunk } from "../../Store/messages/actions";
+import {userNameSelector} from "../../Store/profile/selectors"
 
 import "./MessageList.css"
+import { addMessageWithFirebase } from "../../Store/messages/actions";
+import { initMessageWithFirebase } from "../../Store/messages/actions";
 
 function MessageList(){
 
@@ -24,10 +25,15 @@ function MessageList(){
         setMessage(event.target.value)
     }
 
-    const onAddMessage = useCallback(()=> {
-        dispatch(addMessageWithThunk(chatId, message, author));
-    }, [chatId, message, author, dispatch]);
+    const messageId = Date.now()
 
+    const onAddMessage = useCallback(() => {
+        dispatch(addMessageWithFirebase(chatId, message, messageId, author))   
+    })
+
+    useEffect(() => {
+        dispatch(initMessageWithFirebase())
+    }, [])
 
     if(messages[chatId]){
         return( 
@@ -35,14 +41,13 @@ function MessageList(){
                 <div className="chat">
                         {messages[chatId].map((mess) => {
                             return (
-                                <div className={mess.author === author ? "message" : "answer"} key={mess.id}>
-                                <p>{mess.text}</p>
-                                <div className="author">{mess.author}</div>
+                                <div className={mess.message_author === author ? "message" : "answer"} key={mess.id}>
+                                <p>{mess.message_text}</p>
+                                <div className="author">{mess.message_author}</div>
                                 </div>
                             )
                         })}
                 </div>
-
 
                 <div className="send-message">
                     <div className="message-form">

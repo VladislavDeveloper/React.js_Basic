@@ -1,9 +1,7 @@
 import { ADD_CHAT, REMOVE_CHAT } from "./constants"
 
 const initialChats = {
-    chatsList : [
-        {id: 11111111, name: "Bot"}
-    ]
+    chatsList : []
 }
 
 const chatsReducer = (state = initialChats, action) => {
@@ -11,16 +9,9 @@ const chatsReducer = (state = initialChats, action) => {
         case ADD_CHAT:
             return{
                 ...state,
-                chatsList:[
-                    ...state.chatsList,
-                    {
-                        id: Date.now(),
-                        name: action.name,
-                    },
-                ],
+                chatsList: action.chats
             }
         case REMOVE_CHAT: 
-            console.log(action.id);
             return{
                 ...state,
                 chatsList:[

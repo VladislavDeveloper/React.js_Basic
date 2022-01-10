@@ -1,41 +1,23 @@
-import { ADD_MESSAGE, REMOVE_MESSAGES } from "./constants";
+import { CHANGE_MESSAGES } from "./constants";
 
 const initialState = {
-    messageList: {},
+    messages: {},
 };
-const messagesReducer = (state = initialState, action) => {
-    switch(action.type){
-        case ADD_MESSAGE: {
-            const chatId = action.chatId
-            const message = action.message
-            const author = action.author
-            
-            const chatMessages = state.messageList[chatId] ?? [];
 
+export const messagesReducer = (state = initialState, action) => {
+    switch(action.type){
+        case CHANGE_MESSAGES: {
             return {
                 ...state,
-                messageList:{
-                    ...state.messageList,
-                    [chatId]:[...chatMessages, {id: Date.now(), author: author, text: message }] 
+                messages: {
+                    ...state.messages,
+                    [action.payload.chatId] : action.payload.messages,
                 }
             }
-        };
-        case REMOVE_MESSAGES: {
-            const id  = action.id;
-            console.log(id);
-
-            let { [id]:chatMessages, ...messageList} = state.messageList
-
-            return {
-                messageList
-            }
-
         }
-        default:{
-            return state
-        }
-    };
+        default:
+            return state;
+    }
 }
-
 
 export default messagesReducer

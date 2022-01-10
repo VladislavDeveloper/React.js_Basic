@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import { green } from '@mui/material/colors';
@@ -11,9 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./ChatList.css"
 
 import { chatListSelector } from "../../Store/chats/selectors";
-import { addChat } from "../../Store/chats/actions";
-import { removeChatAction } from "../../Store/chats/actions";
-import { removeMessages } from "../../Store/messages/actions";
+import { addChatWithFirebase } from "../../Store/chats/actions";
+import { initChatsWithThunk } from "../../Store/chats/actions";
 
 const style = {
     position: 'absolute',
@@ -28,24 +27,26 @@ const style = {
 
 
 export function ChatList(){
-
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const [newChatName, setNewChatName] = useState('');
+    const [newChat, setNewChat] = useState('');
 
     const chats = useSelector(chatListSelector);
-
+    
     const dispatch = useDispatch();
 
     const handleChange = event => {
-        setNewChatName(event.target.value);
+        setNewChat(event.target.value);
     }
 
+    useEffect(()=> {
+        dispatch(initChatsWithThunk())
+    },[]);
+
     const onAddChat = () => {
-        dispatch(addChat(newChatName));
-        setNewChatName('');
+        dispatch(addChatWithFirebase(newChat));
         handleClose();
     }
 
@@ -69,7 +70,7 @@ export function ChatList(){
                     <div className="add-new-contact">
                         <h3>Новый контакт</h3>
                         <div className="decor-line"></div>
-                        <input value={newChatName} onChange={handleChange} type="text" />
+                        <input onChange={handleChange} type="text" />
                         <button onClick={onAddChat} className="add-contact-btn">Добавить</button>
                     </div>
                 </Box>
@@ -89,9 +90,7 @@ export function ChatList(){
                             
                             <div className="delete-contacts">
                                 <DeleteIcon 
-                                onClick={() => 
-                                    {dispatch(removeChatAction(chat.id),
-                                     dispatch(removeMessages(chat.id)))}}
+                                onClick={() => {}}
                                 />
                             </div>
                         </div>
